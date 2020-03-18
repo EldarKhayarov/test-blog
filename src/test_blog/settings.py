@@ -34,6 +34,7 @@ INSTALLED_APPS = [
 
     'core.apps.CoreConfig',
     'authentication.apps.AuthenticationConfig',
+    'blog.apps.BlogConfig',
 ]
 
 MIDDLEWARE = [
@@ -119,6 +120,10 @@ USE_TZ = CONFIG['USE_TZ']
 LOGIN_URL = 'login/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = LOGIN_URL
+
+
+# Override base user model
+AUTH_USER_MODEL = 'authentication.User'
 
 
 # Static files (CSS, JavaScript, Images)

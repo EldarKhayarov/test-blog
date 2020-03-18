@@ -31,6 +31,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'core.apps.CoreConfig',
+    'authentication.apps.AuthenticationConfig',
 ]
 
 MIDDLEWARE = [
@@ -110,6 +113,12 @@ USE_I18N = CONFIG['USE_I18N']
 USE_L10N = CONFIG['USE_L10N']
 
 USE_TZ = CONFIG['USE_TZ']
+
+
+# Login redirect
+LOGIN_URL = 'login/'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = LOGIN_URL
 
 
 # Static files (CSS, JavaScript, Images)

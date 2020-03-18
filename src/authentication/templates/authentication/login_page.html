@@ -1,0 +1,19 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+    Логин
+{% endblock %}
+
+{% block content %}
+    <div style="margin: 0 auto">
+        <h1>Логин</h1>
+        <form action="." method="post">
+            {% if error %}
+                {{ error }}
+            {% endif %}
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Войти" class="primary-button">
+        </form>
+    </div>
+{% endblock %}

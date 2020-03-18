@@ -127,3 +127,14 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+
+# Editor
+.idea/
+
+# Pipenv
+Pipfile
+Pipfile.lock
+
+# Secret config
+config.json

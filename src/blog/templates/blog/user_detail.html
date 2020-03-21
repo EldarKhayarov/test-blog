@@ -1,8 +1,48 @@
 {% extends 'core/base.html' %}
 {% block title %}
-    Пользователь
+    Пользователь {{ object.username }}
 {% endblock %}
 
 {% block content %}
-    <p>test</p>
+    <div class="container">
+        <h4>{{ object.username }}</h4>
+        <p>{{ object.email }}</p>
+    </div>
+
+    {% if is_owner %}
+        <div class="container">
+            <form action="." method="post">
+                {% if error %}
+                    {{ error }}
+                {% endif %}
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="Запостить" class="primary-button">
+            </form>
+        </div>
+    {% else %}
+        <div class="container">
+            {% if is_followed %}
+                <form action="{% url 'unfollow-user' slug=object.username %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" value="Отписаться" class="btn-link">
+                </form>
+            {% else %}
+                <form action="{% url 'follow-user' slug=object.username %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" value="Подписаться" class="btn-link">
+                </form>
+            {% endif %}
+        </div>
+    {% endif %}
+
+    <div class="container">
+    {% if posts %}
+        {% for post in posts %}
+            {% include 'blog/post.html' %}
+        {% endfor %}
+    {% else %}
+        <p>Постов пока нет.</p>
+    {% endif %}
+    </div>
 {% endblock %}

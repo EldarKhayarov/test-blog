@@ -1,0 +1,19 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+	Лента
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+    {% if object_list %}
+        <div class="post">
+            {% for post in object_list %}
+                {% include 'blog/post.html' %}
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>Постов пока нет</p>
+    {% endif %}
+    </div>
+{% endblock %}

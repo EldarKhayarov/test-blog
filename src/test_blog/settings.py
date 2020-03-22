@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'core.apps.CoreConfig',
     'authentication.apps.AuthenticationConfig',
     'blog.apps.BlogConfig',
+    'email_notifier.apps.EmailNotifierConfig',
 ]
 
 MIDDLEWARE = [
@@ -117,12 +118,14 @@ USE_TZ = CONFIG['USE_TZ']
 
 
 # Login redirect
+
 LOGIN_URL = 'login/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = 'login'
 
 
 # Override base user model
+
 AUTH_USER_MODEL = 'authentication.User'
 
 
@@ -130,3 +133,14 @@ AUTH_USER_MODEL = 'authentication.User'
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = CONFIG['STATIC_URL']
+
+
+# Email sending
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = CONFIG['EMAIL_HOST']
+EMAIL_HOST_USER = CONFIG['EMAIL_HOST_USER']
+EMAIL_HOST_PASSWORD = CONFIG['EMAIL_HOST_PASSWORD']
+EMAIL_PORT = CONFIG['EMAIL_PORT']
+EMAIL_USE_TLS = CONFIG['EMAIL_USE_TLS']
+EMAIL_USE_SSL = CONFIG['EMAIL_USE_SSL']

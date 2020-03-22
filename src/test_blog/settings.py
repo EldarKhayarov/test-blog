@@ -119,7 +119,7 @@ USE_TZ = CONFIG['USE_TZ']
 # Login redirect
 LOGIN_URL = 'login/'
 LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = LOGIN_URL
+LOGOUT_REDIRECT_URL = 'login'
 
 
 # Override base user model

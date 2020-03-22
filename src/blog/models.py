@@ -26,6 +26,9 @@ class Post(models.Model):
 
 
 class PostIsRead(models.Model):
+    """
+    Модель для пометки поста о прочитанности.
+    """
     post = models.ForeignKey('Post', on_delete=models.CASCADE)
     user = models.ForeignKey(UserModel, on_delete=models.CASCADE)
 

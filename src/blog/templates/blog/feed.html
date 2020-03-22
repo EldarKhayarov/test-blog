@@ -1,4 +1,4 @@
-{% extends 'core/base.html' %}
+{% extends 'core/header.html' %}
 
 {% block title %}
 	Лента
@@ -9,7 +9,7 @@
     {% if object_list %}
         <div class="post">
             {% for post in object_list %}
-                {% include 'blog/post.html' %}
+                {% include 'blog/post_feed.html' %}
             {% endfor %}
         </div>
     {% else %}

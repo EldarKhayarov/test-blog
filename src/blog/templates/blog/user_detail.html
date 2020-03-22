@@ -1,4 +1,4 @@
-{% extends 'core/base.html' %}
+{% extends 'core/header.html' %}
 {% block title %}
     Пользователь {{ object.username }}
 {% endblock %}
@@ -23,15 +23,9 @@
     {% else %}
         <div class="container">
             {% if is_followed %}
-                <form action="{% url 'unfollow-user' slug=object.username %}" method="post">
-                    {% csrf_token %}
-                    <input type="submit" value="Отписаться" class="btn-link">
-                </form>
+                <a href="{% url 'unfollow-user' slug=object.username %}">Отписаться</a>
             {% else %}
-                <form action="{% url 'follow-user' slug=object.username %}" method="post">
-                    {% csrf_token %}
-                    <input type="submit" value="Подписаться" class="btn-link">
-                </form>
+                <a href="{% url 'follow-user' slug=object.username %}">Подписаться</a>
             {% endif %}
         </div>
     {% endif %}
@@ -39,7 +33,7 @@
     <div class="container">
     {% if posts %}
         {% for post in posts %}
-            {% include 'blog/post.html' %}
+            {% include 'blog/base_post.html' %}
         {% endfor %}
     {% else %}
         <p>Постов пока нет.</p>

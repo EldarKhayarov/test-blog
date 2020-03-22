@@ -1,6 +1,9 @@
 <div class="container post">
     <h5>{{ post.title }}</h5>
     <span>Создано: {{ post.created_at }}</span>
-    <p>Автор: {{ post.author.username }}</p>
+    {% block author %}
+    {% endblock %}
     <p>{{ post.text }}</p>
+    {% block read_mark %}
+    {% endblock %}
 </div>

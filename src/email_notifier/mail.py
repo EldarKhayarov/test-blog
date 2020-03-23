@@ -17,7 +17,8 @@ def get_followers_list(author: User):
 
 def datatuple_generator(subject, message, from_email, recipients):
     for r in recipients:
-        yield subject, message, from_email, (r,)
+        if r is not None:
+            yield subject, message, from_email, (r,)
 
 
 def create_post_mass_mail(title, author):
@@ -27,7 +28,7 @@ def create_post_mass_mail(title, author):
         settings.EMAIL_HOST_USER,
         get_followers_list(author)
     )
-    send_mass_mail(generator)
+    send_mass_mail(generator, fail_silently=True)
 
 
 def update_post_mass_mail(title, author):
@@ -37,14 +38,14 @@ def update_post_mass_mail(title, author):
         settings.EMAIL_HOST_USER,
         get_followers_list(author)
     )
-    return generator
+    send_mass_mail(generator, fail_silently=True)
 
 
 def delete_post_mass_mail(title, author):
-    generator = (
+    generator = datatuple_generator(
         'Оповещение',
         utils.post_deleted_template(title, author.username),
         settings.EMAIL_HOST_USER,
         get_followers_list(author)
     )
-    return generator
+    send_mass_mail(generator, fail_silently=True)

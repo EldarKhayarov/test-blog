@@ -1,0 +1,27 @@
+version: '3'
+services:
+  db:
+    image: postgres:10.12-alpine
+    container_name: postgres
+    restart: always
+    volumes:
+      - ./server_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: test_blog
+      POSTGRES_USER: test_blog_user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DATA: /var/lib/postgresql/data
+  app:
+    build: .
+    container_name: test_blog
+    restart: always
+    volumes:
+      - ./config.json:/etc/server/config.json
+    environment:
+      CONFIG_PATH: /etc/server/config.json
+      DJANGO_SETTINGS_MODULE: test_blog.settings
+    command: python manage.py runserver 0.0.0.0:8000
+    ports:
+      - 8000:8000
+    depends_on:
+      - db

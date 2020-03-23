@@ -138,3 +138,6 @@ Pipfile.lock
 
 # Secret config
 config.json
+
+# DB data
+server_data/
